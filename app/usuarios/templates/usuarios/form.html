@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ 'Editar' if usuario else 'Nuevo' }} usuario{% endblock %}
+
+{% block contenido %}
+<h2 class="mb-3">{{ 'Editar usuario' if usuario else 'Nuevo usuario' }}</h2>
+<div class="card shadow-sm"><div class="card-body">
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Nombre completo</label>
+            <input type="text" name="nombre" class="form-control" maxlength="80" required
+                   value="{{ request.form.get('nombre', usuario.nombre if usuario else '') }}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Correo electrónico</label>
+            <input type="email" name="email" class="form-control" maxlength="120" required
+                   value="{{ request.form.get('email', usuario.email if usuario else '') }}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Contraseña {% if usuario %}<small class="text-muted">(déjala vacía para no cambiarla)</small>{% endif %}</label>
+            <input type="password" name="password" class="form-control" {{ '' if usuario else 'required' }}>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{{ url_for('usuarios.lista') }}" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div></div>
+{% endblock %}
