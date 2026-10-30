@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+<h2 class="mb-4">Tablón de Anuncios</h2>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card tarjeta-total"><div class="card-body">
+            <div class="numero">{{ totales.anuncios }}</div>
+            <div>Anuncios publicados</div>
+        </div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card tarjeta-total"><div class="card-body">
+            <div class="numero">{{ totales.categorias }}</div>
+            <div>Categorías</div>
+        </div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card tarjeta-total"><div class="card-body">
+            <div class="numero">{{ totales.usuarios }}</div>
+            <div>Usuarios</div>
+        </div></div>
+    </div>
+</div>
+
+<p class="text-muted">Bienvenida al sistema de gestión del tablón de anuncios.</p>
+{% endblock %}

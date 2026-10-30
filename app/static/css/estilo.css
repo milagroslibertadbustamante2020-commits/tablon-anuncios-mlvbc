@@ -1,0 +1,34 @@
+/* Autor: Milagros L. V. Bustamante Chuquimia (MLVBC) - TEM-742 */
+/* Tema propio sobre Bootstrap: tonos vino y tierra */
+:root {
+    --bs-primary: #7B1E3A;
+    --bs-primary-rgb: 123, 30, 58;
+    --bs-link-color: #7B1E3A;
+    --bs-link-color-rgb: 123, 30, 58;
+    --bs-link-hover-color: #5A1429;
+    --bs-link-hover-color-rgb: 90, 20, 41;
+}
+body { background-color: #F7F3EF; }
+.cabecera-institucional { background-color: #7B1E3A; color: #fff; padding: 14px 0; }
+.cabecera-institucional small { color: #E9D8CC; }
+.navbar-mlvbc { background-color: #5A1429; }
+.navbar-mlvbc .nav-link, .navbar-mlvbc .navbar-brand { color: #F4E9E1; }
+.navbar-mlvbc .nav-link:hover, .navbar-mlvbc .nav-link.active { color: #fff; text-decoration: underline; }
+.btn-primary {
+    --bs-btn-bg: #7B1E3A; --bs-btn-border-color: #7B1E3A;
+    --bs-btn-hover-bg: #5F1730; --bs-btn-hover-border-color: #5F1730;
+    --bs-btn-active-bg: #4D1226; --bs-btn-active-border-color: #4D1226;
+    --bs-btn-disabled-bg: #7B1E3A; --bs-btn-disabled-border-color: #7B1E3A;
+}
+.btn-outline-primary {
+    --bs-btn-color: #7B1E3A; --bs-btn-border-color: #7B1E3A;
+    --bs-btn-hover-bg: #7B1E3A; --bs-btn-hover-border-color: #7B1E3A;
+    --bs-btn-active-bg: #7B1E3A; --bs-btn-active-border-color: #7B1E3A;
+}
+.form-control:focus, .form-select:focus {
+    border-color: #B5651D; box-shadow: 0 0 0 .25rem rgba(123, 30, 58, .18);
+}
+.tarjeta-total { border-left: 6px solid #B5651D; }
+.tarjeta-total .numero { font-size: 2rem; font-weight: 700; color: #7B1E3A; }
+.table thead th { background-color: #EADFD6; }
+.pie { background-color: #5A1429; color: #F4E9E1; padding: 14px 0; margin-top: 40px; }
