@@ -10,21 +10,39 @@
         <div class="card tarjeta-total"><div class="card-body">
             <div class="numero">{{ totales.anuncios }}</div>
             <div>Anuncios publicados</div>
+            <a href="{{ url_for('anuncios.lista') }}">Ver anuncios</a>
         </div></div>
     </div>
     <div class="col-md-4">
         <div class="card tarjeta-total"><div class="card-body">
             <div class="numero">{{ totales.categorias }}</div>
             <div>Categorías</div>
+            <a href="{{ url_for('categorias.lista') }}">Ver categorías</a>
         </div></div>
     </div>
     <div class="col-md-4">
         <div class="card tarjeta-total"><div class="card-body">
             <div class="numero">{{ totales.usuarios }}</div>
             <div>Usuarios</div>
+            <a href="{{ url_for('usuarios.lista') }}">Ver usuarios</a>
         </div></div>
     </div>
 </div>
 
-<p class="text-muted">Bienvenida al sistema de gestión del tablón de anuncios.</p>
+<h4>Últimos anuncios</h4>
+{% if recientes %}
+<div class="list-group">
+    {% for a in recientes %}
+    <a class="list-group-item list-group-item-action" href="{{ url_for('anuncios.detalle', id=a.id) }}">
+        <div class="d-flex justify-content-between">
+            <strong>{{ a.titulo }}</strong>
+            <small>{{ a.fecha.strftime('%d/%m/%Y %H:%M') }}</small>
+        </div>
+        <small>{{ a.categoria.nombre }} - por {{ a.autor.nombre }}</small>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-muted">Todavía no hay anuncios. <a href="{{ url_for('anuncios.nuevo') }}">Publica el primero</a>.</p>
+{% endif %}
 {% endblock %}

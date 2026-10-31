@@ -14,4 +14,5 @@ def inicio():
         'categorias': Categoria.query.count(),
         'anuncios': Anuncio.query.count(),
     }
-    return render_template('main/inicio.html', totales=totales)
+    recientes = Anuncio.query.order_by(Anuncio.fecha.desc()).limit(5).all()
+    return render_template('main/inicio.html', totales=totales, recientes=recientes)

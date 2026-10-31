@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block titulo %}Anuncios{% endblock %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Anuncios</h2>
+    <a href="{{ url_for('anuncios.nuevo') }}" class="btn btn-primary">Nuevo anuncio</a>
+</div>
+
+<form method="GET" class="row g-2 mb-3">
+    <div class="col-md-5">
+        <input type="text" name="q" value="{{ q }}" class="form-control" placeholder="Buscar en título o contenido">
+    </div>
+    <div class="col-md-3">
+        <select name="categoria_id" class="form-select">
+            <option value="">Todas las categorías</option>
+            {% for c in categorias %}
+            <option value="{{ c.id }}" {{ 'selected' if categoria_id == c.id else '' }}>{{ c.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-auto"><button class="btn btn-outline-primary">Filtrar</button></div>
+    <div class="col-auto"><a href="{{ url_for('anuncios.lista') }}" class="btn btn-outline-secondary">Limpiar</a></div>
+</form>
+
+<table class="table table-striped align-middle bg-white">
+    <thead><tr><th>ID</th><th>Título</th><th>Categoría</th><th>Autor</th><th>Fecha</th><th class="text-end">Acciones</th></tr></thead>
+    <tbody>
+    {% for a in anuncios %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td><a href="{{ url_for('anuncios.detalle', id=a.id) }}">{{ a.titulo }}</a></td>
+            <td>{{ a.categoria.nombre }}</td>
+            <td>{{ a.autor.nombre }}</td>
+            <td>{{ a.fecha.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td class="text-end">
+                <a href="{{ url_for('anuncios.editar', id=a.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                <form method="POST" action="{{ url_for('anuncios.eliminar', id=a.id) }}" class="d-inline"
+                      onsubmit="return confirm('¿Eliminar este anuncio?');">
+                    <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="6" class="text-center text-muted">No se encontraron anuncios.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

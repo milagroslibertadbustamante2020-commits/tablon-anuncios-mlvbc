@@ -15,11 +15,13 @@ def create_app(config_class=Config):
     from app.main.routes import main_bp
     from app.usuarios.routes import usuarios_bp
     from app.categorias.routes import categorias_bp
+    from app.anuncios.routes import anuncios_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
     app.register_blueprint(usuarios_bp)
     app.register_blueprint(categorias_bp)
+    app.register_blueprint(anuncios_bp)
 
     # Crea las tablas de bd_anuncios y el usuario inicial
     with app.app_context():
