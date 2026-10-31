@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ 'Editar' if categoria else 'Nueva' }} categoría{% endblock %}
+
+{% block contenido %}
+<h2 class="mb-3">{{ 'Editar categoría' if categoria else 'Nueva categoría' }}</h2>
+<div class="card shadow-sm"><div class="card-body">
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" maxlength="60" required
+                   value="{{ request.form.get('nombre', categoria.nombre if categoria else '') }}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <input type="text" name="descripcion" class="form-control" maxlength="200"
+                   value="{{ request.form.get('descripcion', (categoria.descripcion or '') if categoria else '') }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{{ url_for('categorias.lista') }}" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div></div>
+{% endblock %}
